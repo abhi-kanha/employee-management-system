@@ -1,0 +1,65 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+<!-- Hoverable rows start -->
+<div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+  <div class="row" id="table-hover-row">
+    <div class="col-12">
+      <div class="card">
+
+        <div class="card-content">
+          <div class="card-body">
+            <a href="/timesheet/"><button type="submit" class="btn btn-info">Back</button></a>
+          </div>
+          <!-- table hover -->
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>USER ID</th>
+                  <th>USER NAME</th>
+                  <th>DATE</th>
+                  <th>DAY</th>
+                  <th>IN TIME</th>
+                  <th>OUT TIME</th>
+                  <th>STATUS</th>
+                  
+                  <th>ACTION</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                  {% if timesheet %}
+                {% for t in timesheet %}
+                <tr>
+                  <td class="text-bold-500">{{t.user.id}}</td>
+                  <td class="text-bold-500">{{t.user.user.first_name}} {{t.user.user.last_name}}</td>
+                  <td>{{t.date}}</td>
+                  <td>{{t.date| date:"l"}}</td>
+                  <td>{{t.in_time}}</td>
+                  <td>{{t.out_time}}</td>
+                  <td>{{t.status}}</td>
+                  
+                  <td>
+                    <a href="/delete-attendance/{{t.id}}/" class="btn btn-danger text-white"><i class="fa fa-trash"
+                        aria-hidden="true"></i></a>
+
+                  </td>
+                  
+                </tr>
+                {% endfor %}
+                {% else %}
+                No data available
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+{% endblock %}

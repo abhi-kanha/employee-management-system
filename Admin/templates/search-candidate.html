@@ -1,0 +1,33 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+
+    <div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="page-title">Search Candidate</h1>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-8 offset-lg-2">
+                    <form action="/search-candidate/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label>Candidate Email:</label>
+                            <input type="text" name="email" placeholder="Candidate Email.." class="form-control" required/>
+                        </div>
+                        
+                        <div class="m-t-20 text-center">
+                            <input type="submit" class="btn btn-primary submit-btn" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

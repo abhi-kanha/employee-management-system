@@ -1,0 +1,97 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+
+ <div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+        <div class="content">
+            <div class="row">
+            <span class="user-icon">
+                            {% if request.user.userprofile_set.first.profilePicture %}                        
+                            <img style="width:100px; height:100px;border-radius:50%;" src="{{request.user.userprofile_set.first.profilePicture.url}}" alt="">
+                            {% else %}
+                            <img style="width:100px; height:100px;border-radius:50%;" src="{% static 'vendors/images/photo1.jpg' %}" alt="">
+                            {% endif %}
+        
+                        </span>
+                <div class="pd-20 col-sm-4 col-3">
+                    <h4 class="text-blue h4">Hi,{{user.first_name}}</h4>
+                </div>
+
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-8 offset-lg-2">
+                    <form action="/edit-profile/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                        <div class="row">
+                             
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name"> First Name:     </label> <br>
+                                    <input class="form-control" type="text" name="first_name" value="{{request.user.first_name}} " >                                 
+                                </div> 
+                            </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Last Name:     </label> <br>
+                                    <input class="form-control" type="text" name="last_name" value="{{request.user.last_name}}" >                                 
+                                </div> 
+                            </div>
+                         
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="number">Contact No:     </label><br>
+                                    <input class="form-control" type="number" name="contact" value="{{request.user.userprofile_set.first.contact_No}}" >                    
+                                </div>
+                            </div>
+                        
+                         <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date">Date of Birth:    </label>  <br>
+                                    <input class="form-control" type="date" name="dob" value="{{request.user.userprofile_set.first.dob |date:'Y-m-d'}}" >                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date">Email:   </label> <br>
+                                    <input class="form-control" type="email" name="email" value="{{request.user.email}}" >                             
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="text">profilePicture:  </label><br>
+                                    <input class="form-control" type="file" name="pic" >
+                                   
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="row">
+                           
+                        </div>
+                  
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="text">Adress:  </label><br>
+                                <textarea class='form-control'  rows='3' type="text" name="address" >{{request.user.userprofile_set.first.address}}</textarea>
+                               
+                            </div>
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <input type="submit" value="Update" class="btn btn-primary submit-btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+ {% endblock %}

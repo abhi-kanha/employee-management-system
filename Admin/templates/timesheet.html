@@ -1,0 +1,47 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+    <div class="content">
+        <div class="row">
+            <div class="pd-20 col-sm-4 col-3">
+                <h4 class="text-blue h4">TimeSheet</h4>
+                <select class="form-control" style="float: right;" name="year">
+                    <option>{% now 'Y' %}</option>
+                </select>
+            </div>
+        </div>
+        <form action="/timesheet/" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" name='month' style="margin-right: 90px;" value='1'>January</button>
+                    <button class="btn btn-info" name='month' style="margin-right: 90px;" value='2'>February</button>
+                    <button class="btn btn-success" name='month' style="margin-right: 90px;" value='3'>March</button>
+                    <button class="btn btn-danger" name='month' style="margin-right: 90px;" value='4'>April</button>
+                    <button class="btn btn-warning" name='month' style="margin-right: 90px;" value='5'>May</button>
+                    <button class="btn btn-dark" name='month' style="margin-right: 50px;" value='6'>June</button>
+                    <br><br>
+
+                    <button class="btn btn-dark" name='month' style="margin-right: 60px;" value='7'>July</button>
+                    <button class="btn btn-warning" name='month' style="margin-right: 60px;" value='8'>August</button>
+                    <button class="btn btn-danger" name='month' style="margin-right: 60px;" value='9'>September</button>
+                    <button class="btn btn-success" name='month' style="margin-right: 60px;" value='10'>October</button>
+                    <button class="btn btn-info" name='month' style="margin-right: 90px;" value='11'>November</button>
+                    <button class="btn btn-primary" name='month' value='12'>December</button>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-5">
+            <div class="col-lg-8 offset-lg-2">
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+<!-- Hoverable rows start -->
+<div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+    <div class="row" id="table-hover-row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-content">
+
+                    <!-- table hover -->
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>WORK ID</th>
+                                    <th>MANAGER NAME</th>
+                                    <th>DATE</th>
+                                    <th>DEADLINE</th>
+                                    <th>STATUS</th>
+
+                                    <th>ACTION</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if work %}
+                                {% for t in work %}
+                                <tr>
+                                    <td class="text-bold-500">{{t.id}}</td>
+                                    <td class="text-bold-500">{{t.manager.user.first_name}} {{t.manager.user.last_name}}
+                                    </td>
+                                    <td>{{t.date}}</td>
+                                    <td>{{t.deadline}}</td>
+                                    <td>{{t.status}}</td>
+
+                                    <td>
+                                        <a href="" class="btn btn-info text-white" data-toggle="modal"
+                                            data-target="#modal-default{{t.id}}">View</a>
+                                        {% if t.status == "Pending" %}
+                                        <a href="/start-work/{{t.id}}/" class="btn btn-info text-white">START</a>
+                                        {% else %}
+                                        <a href="/completed-work/{{t.id}}/"
+                                            class="btn btn-success text-white">COMPLETED</a>
+                                        {% endif %}
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modal-default{{t.id}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">View Work</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label>Title:</label>
+                                                        <input type="text" class="form-control" value="{{t.pname}}"
+                                                            disabled /><br><br>
+                                                        <label>Description:</label>
+                                                        <textarea class="form-control"
+                                                            disabled>{{t.description}}</textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                No data available
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+{% endblock %}

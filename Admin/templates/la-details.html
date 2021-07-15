@@ -1,0 +1,59 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+<!-- Hoverable rows start -->
+<div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+  <div class="row" id="table-hover-row">
+    <div class="col-12">
+      <div class="card">
+
+        <div class="card-content">
+          <div class="card-body">
+
+          </div>
+          <!-- table hover -->
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>APPLICATION ID</th>
+                  <th>USER NAME</th>
+                  <th>CONTACT NO</th>
+                  <th>LEAVE TYPE</th>
+                  <th>FROM DATE</th>
+                  <th>TO DATE</th>
+                  <th>STATUS</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for u in users %}
+                <tr>
+                  <td class="text-bold-500">{{u.leave_id}}</td>
+                  <td class="text-bold-500">{{u.user.user.first_name}} {{u.user.user.last_name}}</td>
+                  <td>{{u.user.contact_No}}</td>
+                  <td>{{u.leaveType}}</td>
+                  <td>{{u.from_date}}</td>
+                  <td>{{u.to_date}}</td>
+                  <td>{{u.status}}</td>
+                  <td>
+                    <a href="/approve/{{u.id}}/" class="btn btn-success text-white"><i class="fa fa-eye"
+                        aria-hidden="true"></i></a>
+                    <a href="/delete-la/{{u.id}}/" class="btn btn-danger text-white"><i class="fa fa-trash"
+                        aria-hidden="true"></i></a>
+
+                  </td>
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

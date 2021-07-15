@@ -1,0 +1,125 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+<!-- Hoverable rows start -->
+<div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+    <div class="row" id="table-hover-row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-content">
+                    {% if request.user.userprofile_set.first.userType == "HR" %}
+                    <div class="card-body">
+                        <a href="/search-candidate/"><button type="submit" class="btn btn-info">Back</button></a>
+                    </div>
+                    {% endif %}
+                    <!-- table hover -->
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>CANDIDATE ID</th>
+                                    <th>CANDIDATE NAME</th>
+                                    <th>CANDIDATE EMAIL</th>
+                                    <th>DATE</th>
+                                    <th>STATUS</th>
+
+                                    <th>ACTION</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if candidate %}
+                                {% for t in candidate %}
+                                <tr>
+                                    <td class="text-bold-500">{{t.interview_id}}</td>
+                                    <td class="text-bold-500">{{t.candidate_name}}</td>
+                                    <td>{{t.candidate_email}}</td>
+                                    <td>{{t.created_at}}</td>
+                                    <td>{{t.status}}</td>
+
+                                    <td>
+                                        {% if request.user.userprofile_set.first.userType == "HR" %}
+                                        {% if t.feedback %}
+                                        <a href="" class="btn btn-info text-white" data-toggle="modal"
+                                            data-target="#modal-default{{t.id}}">View Feedback</a>
+                                        
+                                        {% if t.status == "Pending" %}
+                                        <a href="/accept-candidate/{{t.id}}/" class="btn btn-success text-white">Selected</a>
+                                        <a href="/reject-candidate/{{t.id}}/" class="btn btn-danger text-white">Rejected</a>
+                                        {% endif %}
+                                        {% else %}
+                                        <a href="/delete-interview/{{t.id}}/" class="btn btn-danger text-white"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></a>
+                                        {% endif %}
+                                        {% else %}
+                                        {% if t.feedback %}
+                                        <a href="" class="btn btn-info text-white" data-toggle="modal"
+                                            data-target="#modal-default{{t.id}}">View Feedback</a>
+                                        {% else %}
+                                        <a href="" class="btn btn-info text-white" data-toggle="modal"
+                                            data-target="#modal-default{{t.id}}">Add Feedback</a>
+                                        {% endif %}
+                                        {% endif %}
+                                        <!-- Modal -->
+                                        <form action="/add-feedback/{{t.id}}/" method="POST">
+                                            {% csrf_token %}
+                                            <div class="modal fade" id="modal-default{{t.id}}" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Add Feedback
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        {% if t.feedback %}
+                                                        <div class="modal-body">
+                                                            <textarea name="feedback" placeholder="Add Feedback.."
+                                                                class="form-control" rows="4"
+                                                                required>{{t.feedback}}</textarea>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="modal-body">
+                                                            <textarea name="feedback" placeholder="Add Feedback.."
+                                                                class="form-control" rows="4" required></textarea>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            {% if t.feedback %}
+                                                            {% if request.user.userprofile_set.first.userType == "Manager" %}
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Update</button>
+                                                            {% endif %}
+                                                            {% else %}
+                                                            <button type="submit" class="btn btn-primary">Add</button>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                No data available
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+{% endblock %}

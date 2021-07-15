@@ -1,0 +1,69 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+<!-- Hoverable rows start -->
+<div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+  <div class="row" id="table-hover-row">
+    <div class="col-12">
+      <div class="card">
+
+        <div class="card-content">
+          <div class="card-body">
+
+          </div>
+          <!-- table hover -->
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>USER ID</th>
+                  <th>NAME</th>
+                  <th>DATE</th>
+                  <th>Phone No</th>
+                  <th>STATUS</th>
+                  <th>IN TIME</th>
+                  <th>OUT TIME</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for u in users %}
+                <tr>
+                  <td class="text-bold-500">{{u.user.id}}</td>
+                  <td class="text-bold-500">{{u.user.name}}</td>
+                  <td>{{u.date}}</td>
+                  <td>{{u.user.contact_No}}</td>
+                  <td>{{u.status}}</td>
+                  <td>{{u.in_time}}</td>
+                  <td>{{u.out_time}}</td>
+                  <td>
+
+                    <a href="/delete-attendance/{{u.id}}/" class="btn btn-danger text-white"><i class="fa fa-trash"
+                        aria-hidden="true"></i></a>
+
+                  </td>
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hoverable rows end -->
+  <footer>
+    <div class="footer clearfix mb-0 text-muted">
+      <div class="float-left">
+
+      </div>
+      <div class="float-right">
+
+      </div>
+    </div>
+  </footer>
+</div>
+</div>
+</div>
+{% endblock %}

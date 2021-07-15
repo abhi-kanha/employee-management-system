@@ -1,0 +1,83 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+
+    <div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+        <div class="content">
+            <div class="row">
+
+                <div class="pd-20 col-sm-4 col-3">
+                    <h4 class="text-blue h4">Approve Leave Application</h4>
+                </div>
+
+
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-8 offset-lg-2">
+                     <form action="/approve/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Employee Name:</label>
+                                    <label><strong>{{details.name}} </strong> </label>    
+                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="number">Contact No:</label>
+                                    <label><strong>{{details.contact_No}} </strong> </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="text">Leave Type:</label>
+                                    <label><strong>{{details.leaveType}} </strong> </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="text">Total Hour:</label>
+                                    <label><strong>{{details.totalhours}} </strong> </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date">From Date:</label>
+                                    <label><strong>{{details.from_date}} </strong> </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date">To Date:</label>
+                                    <label><strong>{{details.to_date}} </strong> </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Reasons:</label>
+                            <label><strong>{{details.reasons}} </strong> </label>
+                        </div>
+                        <div class="m-t-20 text-center">
+                             <input type="submit" class="btn btn-primary submit-btn" value="Approve">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

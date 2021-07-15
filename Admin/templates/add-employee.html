@@ -1,0 +1,110 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+    <div class="content">
+        <div class="row">
+
+            <div class="pd-20 col-sm-4 col-3">
+                <h4 class="text-blue h4">Add Employee</h4>
+            </div>
+
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-8 offset-lg-2">
+                <form action="/add-employee/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if msg %}
+                    <center style="color: red ;">{{msg}} </center>
+
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">User Name:</label>
+                                <input type="text" class="form-control" id="name" name="username" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="number">Contact No:</label>
+                                <input type="text" class="form-control" id="number" name="contact" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="date">First Name:</label>
+                                <input type="text" class="form-control" id="date" name="first_name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="date">Last Name:</label>
+                                <input type="text" class="form-control" id="date" name="last_name" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="text">DOB:</label>
+                                <input type="date" class="form-control" id="text" name="dob" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="number">E-mail :</label>
+                                <input type="email" class="form-control" id="number" name="email" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Password :</label>
+                                <input type="Password" class="form-control" id="email" name="password" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="text">Confirm Password:</label>
+                                <input type="Password" class="form-control" id="text" name="confirm_password" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Usertype :</label>
+                                <Select class="form-control" id="email" name="userType" required>
+                                    <option>Employee</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <textarea cols="30" rows="4" name="address" class="form-control"></textarea>
+                    </div>
+
+                    <div class="m-t-20 text-center">
+                        <input type="submit" class="btn btn-primary submit-btn" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

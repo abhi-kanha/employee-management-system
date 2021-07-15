@@ -1,0 +1,84 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+
+
+    <div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+        <div class="content">
+            <div class="row">
+
+                <div class="pd-20 col-sm-4 col-3">
+                    <h4 class="text-blue h4">Assign Work</h4>
+                </div>
+
+
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-8 offset-lg-2">
+                     <form action="/assign-work/" method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Work Name:</label>
+                                    <input type="text" placeholder="Work" class="form-control" id="name" name="pname" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Work Description:</label>
+                                    <textarea placeholder="Description" class="form-control" name="description" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date">Assign To:</label>
+                                    <select class="form-control" id="date" name="assignto" required>
+                                    {% for u in users %}
+                                    <option value="{{u.id}}">{{u.user.first_name}} {{u.user.last_name}}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date">Assign Date:</label>
+                                    <input type="date" class="form-control" id="date" name="date" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date">Deadline:</label>
+                                    <input type="date" class="form-control" id="date" name="deadline" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-t-20 text-center">
+                            <input type="submit" class="btn btn-primary submit-btn" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

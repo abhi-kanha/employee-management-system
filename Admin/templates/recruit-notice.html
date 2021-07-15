@@ -1,0 +1,38 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+{% load static %}
+
+    <div class="page-wrapper" style="margin-left: 350px;padding-top: 100px;">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="page-title">Recruitment Notice</h1>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-8 offset-lg-2">
+                    <form action="/recruit-notice/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <textarea cols="30" rows="4" name="description" class="form-control"></textarea>
+                        </div>
+
+                        <div class="m-t-20 text-center">
+                            <input type="submit" class="btn btn-primary submit-btn" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

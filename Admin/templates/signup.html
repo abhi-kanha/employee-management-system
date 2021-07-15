@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/an.css' %}">
+  <title> SignUp </title>
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'vendors/images/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'vendors/images/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'vendors/images/favicon-16x16.png' %}">
+</head>
+
+<body>
+
+  <body>
+    <form action="/signup/" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% if msg %}
+      <center style="color: red ;">{{msg}} </center>
+
+      {% endif %}
+      <div class="login-page">
+        <div class="form">
+          <div class="login">
+            <div class="login-header">
+              <h3 style="color: #abe9cd;">SignUp</h3>
+              <p>Please enter your credentials.</p>
+            </div>
+          </div>
+          <div class="row register-form">
+            <select style="cursor:pointer; font-family: Roboto, sans-serif;  outline: 0;  background: #f2f2f2;  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px; font-size: 14px;" name='userType'>
+              <option>Employee</option>
+              <option>Manager</option>
+              <option>HR</option>
+              <option>Admin</option>
+
+            </select>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name *" name="first_name" value=""
+                  required />
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Last Name *" name="last_name" value="" required />
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="User Name *" name="username" value="" required />
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email *" name="email" value="" required />
+              </div>
+              <div class="form-group">
+                <input type="number" minlength="10" maxlength="10" name="contact" class="form-control"
+                  placeholder="Your Phone *" value="" required />
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="Date" class="form-control" name="dob" placeholder="DOB*" value="" required />
+                </div>
+
+
+                <div class="form-group">
+
+                  <input type="text" name="address" class="form-control" placeholder="Address*" value=""
+                    required />
+                </div><br>
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="Password*" value=""
+                    required />
+                </div>
+
+                <div class="form-group">
+                  <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password*"
+                    value="" requiired />
+                </div>
+
+                <div class="form-group"><label style="text-align: left;">Profile Picture*</label>
+                  <input type="file" name="pic" class="form-control" />
+                </div>
+
+
+                <input type="submit"
+                  style="background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%); font-family: Roboto, sans-serif; text-transform: uppercase; outline: 0; background-color: #abe9cd;width: 100%;border: 0; padding: 15px;color: #FFFFFF; font-size: 14px; -webkit-transition: all 0.3 ease;  transition: all 0.3 ease;  cursor: pointer;"
+                  class="btnRegister" value="Register">
+                <!--  <input type="submit" class="btnRegister"  value="Register"/> -->
+              </div>
+              <div class="form-group">
+                Already Have an Account??<a href="/login/" style="cursor:pointer;">Login</a><br>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+      </div>
+      </div>
+
+    </form>
+  </body>
+</body>
+
+</html>
